@@ -1,5 +1,7 @@
 package com.cbs.customer_service.service;
 
+import com.cbs.customer_service.exception.CustomerAlreadyExistsException;
+import com.cbs.customer_service.exception.CustomerNotFoundException;
 import com.cbs.customer_service.model.Customer;
 import com.cbs.customer_service.model.KycStatus;
 import com.cbs.customer_service.repository.CustomerRepository;
@@ -17,14 +19,14 @@ public class CustomerService {
     }
     public Customer createCustomer(Customer customer){
         if (customerRepository.findByEmail(customer.getEmail()).isPresent()){
-            throw new IllegalArgumentException("Email already registered: " + customer.getEmail());
+            throw new CustomerAlreadyExistsException("Email already registered: " + customer.getEmail());
         }
         return customerRepository.save(customer);
     }
 
     public Customer getCustomerById(Long id){
         return customerRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException ("Customer not found: " + id));
+                new CustomerNotFoundException("Customer not found: " + id));
     }
 
 
