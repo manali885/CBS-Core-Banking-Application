@@ -1,0 +1,28 @@
+# Maven build output
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Secrets and local config (never commit these)
+.env
+*.env
+application-local.yml
+application-local.properties
+
+# Docker local data
+docker-data/
