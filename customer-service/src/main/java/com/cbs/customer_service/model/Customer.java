@@ -1,10 +1,17 @@
 package com.cbs.customer_service.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class Customer {
     private Long id;
+    @NotBlank(message = "Name is required")
     private String name;
+    @NotBlank(message = "Email is required")
+    @Email(message = "Email format is invalid")
     private String email;
     private String address;
+    @NotBlank(message = "Phone is required")
     private String phone;
     private KycStatus kycStatus;
 

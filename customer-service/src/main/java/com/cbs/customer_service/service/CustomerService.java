@@ -21,6 +21,7 @@ public class CustomerService {
         if (customerRepository.findByEmail(customer.getEmail()).isPresent()){
             throw new CustomerAlreadyExistsException("Email already registered: " + customer.getEmail());
         }
+        customer.setKycStatus(KycStatus.PENDING);
         return customerRepository.save(customer);
     }
 
