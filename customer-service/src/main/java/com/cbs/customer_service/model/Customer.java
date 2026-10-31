@@ -1,18 +1,25 @@
 package com.cbs.customer_service.model;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+@Entity
+@Table(name="customers")
 public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Name is required")
     private String name;
     @NotBlank(message = "Email is required")
+    @Column(unique = true,nullable = false)
     @Email(message = "Email format is invalid")
     private String email;
     private String address;
     @NotBlank(message = "Phone is required")
     private String phone;
+    @Enumerated(EnumType.STRING)
     private KycStatus kycStatus;
 
     public Customer(){
